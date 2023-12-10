@@ -1,19 +1,27 @@
 package com.Graph;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
 class UnweightedListGraph{
-    List<int[]>list;
+    HashMap<Integer,List<Integer>>map;
     public UnweightedListGraph(){
-        list=new LinkedList<>();
+        map=new HashMap<>();
     }
-    public void fillGraph(int vertex,int edge){
-        list.add(new int[]{vertex,edge});
-        list.add(new int[]{edge,vertex});
+    public  void fillGraph(int vertex,int edge){
+        if(!map.containsKey(vertex)){
+            map.put(vertex,new ArrayList<Integer>());
+        }
+        map.get(vertex).add(edge);
     }
     public void printGraph(){
-        for (int[]arr:list){
-            System.out.println(arr[0]+"->"+arr[1]);
+        for (int i:map.keySet()){
+            System.out.println(i+"->"+map.get(i));
         }
+    }
+    public HashMap getGraph(){
+        return map;
+    }
+    public int size(){
+        return map.size();
     }
 
 }
